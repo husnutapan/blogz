@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<script src="http://maps.google.com/maps/api/js?sensor=false"
+		type="text/javascript"></script>
+
+	<script type="text/javascript">
+		var currentMarker = null;
+
+		function handlePointClick(event) {
+			if (currentMarker === null) {
+				document.getElementById('lat').value = event.latLng.lat();
+				document.getElementById('lng').value = event.latLng.lng();
+
+				currentMarker = new google.maps.Marker({
+					position : new google.maps.LatLng(event.latLng.lat(),
+							event.latLng.lng())
+				});
+
+				PF('map').addOverlay(currentMarker);
+
+				PF('dlg').show();
+			}
+		}
+
+		function markerAddComplete() {
+			var title = document.getElementById('title');
+			currentMarker.setTitle(title.value);
+			title.value = "";
+
+			currentMarker = null;
+			PF('dlg').hide();
+		}
+
+		function cancel() {
+			PF('dlg').hide();
+			currentMarker.setMap(null);
+			currentMarker = null;
+
+			return false;
+		}
+	</script>
+</h:head>
+
+<h:body>
+	<p:growl id="msgs" showDetail="true" />
+	<h1 style="color: red;">NEREDEN YAZIYORSUN?</h1>
+	<p:gmap id="gmap" center="36.890257,30.707417" zoom="12" type="HYBRID"
+		style="width:100%;height:400px" model="#{addMarkersView.emptyModel}"
+		onPointClick="handlePointClick(event);" widgetVar="map" />
+
+	<p:dialog widgetVar="dlg" showEffect="fade">
+		<h:form prependId="false">
+			<h:panelGrid columns="2">
+				<h:outputLabel for="title" value="Title:" />
+				<p:inputText id="title" value="#{adminBean.location.detail}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Add"
+						actionListener="#{adminBean.addMarker}" update=":messages"
+						oncomplete="markerAddComplete()" />
+					<p:commandButton value="Cancel" onclick="return cancel()" />
+				</f:facet>
+			</h:panelGrid>
+
+			<h:inputHidden id="lat" value="#{adminBean.location.enlem}" />
+			<h:inputHidden id="lng" value="#{adminBean.location.boylam}" />
+		</h:form>
+	</p:dialog>
+
+
+	<p:growl id="messages" showDetail="true" />
+	<div style="margin: auto;">
+		<div style="margin: auto; width: 800px; background-color: gray;">
+			<h:form id="form">
+				<p:panel header="BlogZ İçerik Yönetimi">
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Başlık" />
+						<p:inputText value="#{adminBean.content.title}" />
+
+						<p:outputLabel value="İçerik" />
+						<p:editor id="editor" widgetVar="editorWidget"
+							value="#{adminBean.content.content}" />
+						<p:outputLabel value="Etiketler :" />
+						<p:inputText value="#{adminBean.content.tag}" />
+
+
+
+
+
+						<p:outputLabel value="Location Detail" />
+						<p:inputTextarea value="#{adminBean.location.detail}" />
+
+						<p:commandButton update="@form" value="Kaydet"
+							action="#{adminBean.kaydet}" />
+					</p:panelGrid>
+
+				</p:panel>
+
+
+
+				<p:panel id="panel1" header="İçerikler">
+					<p:dataTable var="content" value="#{adminBean.liste}"
+						editable="true" editMode="cell"  selectionMode="single" selection="#{adminBean.selectedContent}" rowKey="#{content.id}">
+						
+						<p:ajax event="cellEdit" listener="#{adminBean.onCellEdit}"
+							update="@form" />
+
+						<f:facet name="header">
+            İçerikler
+        </f:facet>
+						<p:column headerText="Id">
+							<h:outputText value="#{content.id}" />
+						</p:column>
+						<p:column headerText="Title">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{content.title}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="modelInput" value="#{content.title}"
+										style="width:96%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="İçerik">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{content.content}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText  value="#{content.content}"
+										style="width:96%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Etiket">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{content.tag}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{content.tag}"
+										style="width:96%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column headerText="Tarih">
+							<h:outputText value="#{content.createDate}" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+
+		</div>
+	</div>
+
+
+</h:body>
+
+
+</html>

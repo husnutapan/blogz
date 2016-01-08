@@ -1,0 +1,206 @@
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Hello World!</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+		media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="application/x-javascript">
+		 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+	</script>
+	<script src="js/jquery-1.8.3.min.js"></script>
+
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop : $(this.hash).offset().top
+				}, 1200);
+			});
+		});
+	</script>
+</h:head>
+<h:body>
+	<div class="header" id="home">
+		<div class="header-top">
+			<div class="logo">
+				<a href="index.html">BlogZ</a>
+			</div>
+			<div class="top-menu">
+				<span class="menu"><img src="images/nav.png" alt="" /> </span>
+				<ul>
+					<li><a href="#home" class="active scroll">home</a></li>
+					<li><a href="#about" class="scroll">about</a></li>
+					<li><a href="#services" class="scroll">services</a></li>
+					<li><a href="#gallery" class="scroll">gallery</a></li>
+					<li><a href="#team" class="scroll">team</a></li>
+					<li><a href="#trainers" class="scroll">trainers</a></li>
+					<li><a href="#contact" class="scroll">contact</a></li>
+
+				</ul>
+			</div>
+			<!--script-nav-->
+			<script>
+				$("span.menu").click(function() {
+					$(".top-menu ul").slideToggle("slow", function() {
+					});
+				});
+			</script>
+			<div class="clearfix"></div>
+		</div>
+		<div class="container">
+			<div class="banner-center">
+				<h1>Get to know about original Muay Thai kickboxing</h1>
+				<p>Mauris fermeum dictum magna. Sed loreet aliquam leotellus
+					door dapibus eget elentum.Mauris fermeum dictum magna. Sed loreet
+					aliquam leotellus door dapibus eget elentum</p>
+			</div>
+			<div class="clearfix"></div>
+			<div class="banner-bottom">
+				<div class="banner-grids">
+					<div class="col-md-4 banner-grid">
+						<h5>
+							<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>classes
+						</h5>
+					</div>
+					<div class="col-md-4 banner-grid">
+						<h5>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>user
+						</h5>
+					</div>
+					<div class="col-md-4 banner-grid">
+						<h5>
+							<span class="glyphicon glyphicon-send" aria-hidden="true"></span>workout
+						</h5>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h:form>
+
+
+
+
+		<div class="contact" id="contact">
+			<div class="container">
+				<div class="title">
+					<h3>contact</h3>
+					<p>A wonderful designs has takenpossession but also the leap
+						into electronic pesetting industry It was popularised in the 1960s
+						with the release</p>
+				</div>
+				<div class="google-map">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.182370726!2d-0.10159865000000001!3d51.52864165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C+UK!5e0!3m2!1sen!2sin!4v1433744055746"></iframe>
+				</div>
+
+			</div>
+		</div>
+
+
+		<ui:repeat var="icerik" value="#{adminBean.liste}">
+			<div class="title">
+				<h3>#{icerik.title}</h3>
+				<p>#{icerik.content}</p>
+			</div>
+		</ui:repeat>
+
+
+		<div class="content">
+			<div class="about-section" id="about">
+				<div class="container">
+					<h3>about</h3>
+					<div class="about-grids">
+						<div class="col-md-6 about-grid"></div>
+						<div class="col-md-6 about-grid">
+							<h4>Latest Innovations</h4>
+							<p>There are many variations of passages of Lorem Ipsum
+								available, but the majority have suffered alteration in some
+								form orbi nunc odio gravida at cursus nec luctus a lorem.
+								Maecenas tristique orci ac sem. Dolor nunc vule putateulr ips
+								dol consec.Donec semp ertet laciniate ultri cie upien disse
+								comete dolo lectus fgilla itollicil tua ludin dolor nec met quam
+								accumsan dolo. Dolore condime netus lullam utlacus adipiscing
+								ipsum molestie. euismod lore estibu lum vel libero ipsum sit
+								amet sollicitudin ante. Aenean imperdiet aliquet
+								hendrerit.euismod lore estibu lum vel libero ipsum sit amet
+								sollicitudin ante. Aenean imperdiet aliquet hendrerit.</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="services" id="services">
+				<div class="container">
+					<h3>services</h3>
+					<div class="services-grids">
+						<div class="col-md-3 services-grid">
+							<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+							<h4>Excepteur sint</h4>
+							<p>Consec tetuer adipicing it. Praesebul lorem ipsum natoque
+								penatibus et gnis dent.Lorem ipsum dolor sit ame.</p>
+						</div>
+						<div class="col-md-3 services-grid">
+							<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+							<h4>learn to swim</h4>
+							<p>Consec tetuer adipicing it. Praesebul lorem ipsum natoque
+								penatibus et gnis dent.Lorem ipsum dolor sit ame.</p>
+						</div>
+						<div class="col-md-3 services-grid">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							<h4>a skill for life!</h4>
+							<p>Consec tetuer adipicing it. Praesebul lorem ipsum natoque
+								penatibus et gnis dent.Lorem ipsum dolor sit ame.</p>
+						</div>
+					</div>
+					<div class="col-md-3 services-grid">
+						<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+						<h4>Fusce euismod</h4>
+						<p>Consec tetuer adipicing it. Praesebul lorem ipsum natoque
+							penatibus et gnis dent.Lorem ipsum dolor sit ame.</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+
+
+
+		</div>
+		<div class="footer-section">
+			<div class="container">
+				<div class="footer-top"></div>
+				<script type="text/javascript">
+					$(document).ready(function() {
+						/*
+						var defaults = {
+							containerID: 'toTop', // fading element id
+							containerHoverID: 'toTopHover', // fading element hover id
+							scrollSpeed: 1200,
+							easingType: 'linear' 
+						};
+						 */
+
+						$().UItoTop({
+							easingType : 'easeOutQuart'
+						});
+
+					});
+				</script>
+				<a href="#" id="toTop" style="display: block;"> <span
+					id="toTopHover" style="opacity: 1;"> </span></a>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>
