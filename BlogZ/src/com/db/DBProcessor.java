@@ -11,11 +11,12 @@ public class DBProcessor {
 	public static void connect()
 	{
 		try {
-			
+			//db jar's driver class
 			Class.forName("org.postgresql.Driver");
+			//your url change your optional db
 			String url="jdbc:postgresql://localhost:5432/blogz";
-			String userName="postgres";
-			String password="husnu1994";
+			String userName="username";
+			String password="password";
 			
 			conn=DriverManager.getConnection(url,userName,password);
 		} catch (Exception e) {
